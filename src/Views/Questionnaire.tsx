@@ -26,7 +26,7 @@ export interface QuestionnaireRef {
   exitFullscreen: () => void;
 }
 
-const Questionnaire = forwardRef<QuestionnaireRef>((props, ref) => {
+const Questionnaire = forwardRef<QuestionnaireRef>(({},ref) => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);

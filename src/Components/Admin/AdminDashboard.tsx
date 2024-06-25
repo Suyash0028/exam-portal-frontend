@@ -36,7 +36,7 @@ const AdminDashboard: React.FC = () => {
     fetchQuestions();
   }, []);
 
-  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleTabChange = ({}, newValue: number) => {
     setTabIndex(newValue);
   };
 
