@@ -109,3 +109,11 @@ input {
     background-color: #f9f9f9;
   }
 } 
+
+/* Media Query for Responsive Design */
+@media screen and (max-width: 600px) {
+  .custom-container {
+    margin-top: 50px; /* Adjust margin-top for smaller screens */
+    padding: 15px; /* Reduce padding */
+  }
+}
