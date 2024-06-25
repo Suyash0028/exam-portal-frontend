@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import AdminDashboard from './Admin/AdminDashboard'
 import Questionnaire from '../Views/Questionnaire';
@@ -11,11 +11,11 @@ import SignupForm from './SignupForm';
 
 const MainApp: React.FC = () => {
   const { isAuthenticated, isAdmin } = useAuth();
-
+  let location = useLocation();
   return (
     <Router>
       <Navbar />
-      <Switch>
+      <Switch location={location}>
         <Route path="/login">
           {isAuthenticated ? <Redirect to={isAdmin ? "/admin-dashboard" : "/user-dashboard"} /> : <LoginForm />}
         </Route>
