@@ -9,17 +9,15 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar: React.FC = () => {
     const { isAuthenticated, logout } = useAuth();
-    const [navbarWidth, setNavbarWidth] = useState<number>(0);
+    const [navbarExpanded, setNavbarExpanded] = useState(false);
     const [users, setUsers] = useState<any[]>([]);
     const [userFirstName, setUserFirstName] = useState<string>('');
+
     const handleLogout = () => {
         logout();
     };
 
     useEffect(() => {
-        const handleResize = () => {
-            setNavbarWidth(window.innerWidth);
-        };
         const fetchUsers = async () => {
             try {
                 const fetchedUsers = await getUsers();
@@ -28,6 +26,7 @@ const Navbar: React.FC = () => {
                 console.error('Error fetching users:', error);
             }
         };
+
         const fetchUserFirstName = () => {
             // Assuming you have a way to get the authenticated user's data
             const userId: any = localStorage.getItem("userId");
@@ -40,64 +39,59 @@ const Navbar: React.FC = () => {
                 setUserFirstName("admin");
             }
         };
-        // Initial width on component mount
-        setNavbarWidth(window.innerWidth);
 
-        window.addEventListener('resize', handleResize);
         fetchUsers();
         fetchUserFirstName();
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
     }, [users]);
 
+    const handleNavbarToggle = () => {
+        setNavbarExpanded(!navbarExpanded);
+    };
+
     return (
-        <nav style={{ width: navbarWidth }} className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand d-flex align-items-center" to="/">
+                <Link className="navbar-brand d-flex align-items-center" to="/" onClick={() => setNavbarExpanded(false)}>
                     <img src={logo} alt="Logo" style={{ height: '30px', marginRight: '10px' }} />
                     Exam Portal
                 </Link>
-                {!isAuthenticated ?
-                    <>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div className="collapse navbar-collapse" id="navbarNav">
-                            <ul className="navbar-nav ms-auto">
+                <button className="navbar-toggler" type="button" onClick={handleNavbarToggle} aria-expanded={navbarExpanded ? true : false} aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className={`collapse navbar-collapse ${navbarExpanded ? 'show' : ''}`}>
+                    <ul className="navbar-nav ms-auto">
+                        {!isAuthenticated && (
+                            <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/login">Login</Link>
+                                    <Link className="nav-link" to="/login" onClick={() => setNavbarExpanded(false)}>Login</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/signup">Signup</Link>
+                                    <Link className="nav-link" to="/signup" onClick={() => setNavbarExpanded(false)}>Signup</Link>
                                 </li>
-                            </ul>
+                            </>
+                        )}
+                    </ul>
+                    {isAuthenticated && (
+                        <div className="d-flex align-items-center">
+                            <Dropdown drop="down">
+                                <Dropdown.Toggle variant="outline-light" id="user-dropdown" className='m-2'>
+                                    <FontAwesomeIcon icon={faUser} />
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu
+                                    style={{
+                                        position: 'absolute',
+                                        right: 0,
+                                        left: 'auto',
+                                        minWidth: '10rem', // Adjust as needed
+                                    }}
+                                >
+                                    <Dropdown.Item disabled={true}>Welcome, {userFirstName}</Dropdown.Item>
+                                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
-                    </>
-                    : null}
-                {isAuthenticated ? (
-                    <div>
-                        <Dropdown drop="down">
-                            <Dropdown.Toggle variant="outline-light" id="user-dropdown" className='m-2'>
-                                {/* Placeholder icon, replace with your user persona icon */}
-                                <i className="fa fa-user" aria-hidden="true"></i>
-                                <FontAwesomeIcon icon={faUser} />
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu
-                                style={{
-                                    position: 'absolute',
-                                    right: 0,
-                                    left: 'auto',
-                                    minWidth: '10rem', // Adjust as needed
-                                }}
-                            >
-                                <Dropdown.Item disabled={true}>Welcome, {userFirstName}</Dropdown.Item>
-                                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                ) : null}
+                    )}
+                </div>
             </div>
         </nav>
     );
