@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Question } from './Questions';
+import { Button } from 'react-bootstrap';
 
 interface QuestionFormProps {
   questionId: string | null;
@@ -56,13 +57,13 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ questionId, closeForm, refr
         correctAnswer,
         description,
       };
-      
+
       if (questionId) {
         onEdit(questionId, newQuestion); // Call onEdit function for editing
       } else {
         refreshQuestions(newQuestion); // Call refreshQuestions for adding
       }
-      
+
       closeForm();
     } catch (error) {
       console.error('Error submitting question:', error);
@@ -70,9 +71,9 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ questionId, closeForm, refr
   };
 
   return (
-    <div className="container ">
-      <h2>{questionId ? 'Edit Question' : 'Add Question'}</h2>
-      <form onSubmit={handleSubmit} className="custom-form">
+    <div className="container">
+      <h2 className='mt-2'>{questionId ? 'Edit Question' : 'Add Question'}</h2>
+      <form onSubmit={handleSubmit} className="custom-form mt-2">
         <div className="form-group">
           <label htmlFor="questionText">Question Text:</label>
           <input
@@ -120,9 +121,13 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ questionId, closeForm, refr
             onChange={handleChange}
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <Button variant="primary" type="submit">
           {questionId ? 'Save Changes' : 'Add Question'}
-        </button>
+        </Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button variant="danger" onClick={closeForm} className="ml-2">
+          Close Form
+        </Button>
       </form>
     </div>
   );

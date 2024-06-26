@@ -51,7 +51,7 @@ const QuestionList: React.FC<QuestionListProps> = ({ questions, onDelete, onEdit
 
   return (
     <div>
-      <Button variant="primary" className="mt-3" onClick={handleAddClick}>
+      <Button variant="primary" className="m-3" onClick={handleAddClick}>
         Add New Question
       </Button>
       {isFormVisible && (
