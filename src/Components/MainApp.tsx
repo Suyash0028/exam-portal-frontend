@@ -16,10 +16,10 @@ const MainApp: React.FC = () => {
       <Navbar />
       <Switch>
         <Route path="/login">
-          {isAuthenticated ? <Redirect to={isAdmin ? "/admin-dashboard" : "/user-dashboard"} /> : <LoginForm />}
+          {isAuthenticated ? <Redirect to={isAdmin ? "/admin-dashboard" : "/user-dashboard"} /> : <Redirect to="/login" />}
         </Route>
         <Route path="/signup">
-          {isAuthenticated ? <Redirect to={isAdmin ? "/admin-dashboard" : "/user-dashboard"} /> : <SignupForm />}
+          {isAuthenticated ? <Redirect to={isAdmin ? "/admin-dashboard" : "/user-dashboard"} /> : <Redirect to="/signup" />}
         </Route>
         <ProtectedRoute path="/admin-dashboard" component={AdminDashboard} />
         <ProtectedRoute path="/user-dashboard" component={UserDashboard} />
