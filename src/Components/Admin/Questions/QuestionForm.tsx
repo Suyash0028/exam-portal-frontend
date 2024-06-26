@@ -121,13 +121,15 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ questionId, closeForm, refr
             onChange={handleChange}
           ></textarea>
         </div>
-        <Button variant="primary" type="submit">
-          {questionId ? 'Save Changes' : 'Add Question'}
-        </Button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <Button variant="danger" onClick={closeForm} className="ml-2">
-          Close Form
-        </Button>
+        <div style={{ display: 'flex' }}>
+          <Button variant="primary" type="submit">
+            {questionId ? 'Save Changes' : 'Add Question'}
+          </Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button variant="danger" onClick={closeForm} className="ml-2">
+            Close Form
+          </Button>
+        </div>
       </form>
     </div>
   );

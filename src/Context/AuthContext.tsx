@@ -71,6 +71,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('score');
+    localStorage.removeItem('userId');
     setIsAuthenticated(false);
     setIsAdmin(false);
   };

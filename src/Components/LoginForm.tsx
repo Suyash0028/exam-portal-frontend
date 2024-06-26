@@ -32,6 +32,7 @@ const LoginForm: React.FC = () => {
             const response = await axios.post(`${apiUrl}/auth/login`, formData);
             const token: any = response.data.token;
             login(token, response.data.isAdmin);
+            localStorage.setItem("userId", response.data.userId);
             toast.success('Login successful', {
                 position: 'top-right',
                 autoClose: 3000,
