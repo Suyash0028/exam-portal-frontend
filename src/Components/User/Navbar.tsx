@@ -55,12 +55,12 @@ const Navbar: React.FC = () => {
                     <img src={logo} alt="Logo" style={{ height: '30px', marginRight: '10px' }} />
                     Exam Portal
                 </Link>
-                <button className="navbar-toggler" type="button" onClick={handleNavbarToggle} aria-expanded={navbarExpanded ? true : false} aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className={`collapse navbar-collapse ${navbarExpanded ? 'show' : ''}`}>
-                    <ul className="navbar-nav ms-auto">
-                        {!isAuthenticated && (
+                {!isAuthenticated ? <>
+                    <button className="navbar-toggler" type="button" onClick={handleNavbarToggle} aria-expanded={navbarExpanded ? true : false} aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className={`collapse navbar-collapse ${navbarExpanded ? 'show' : ''}`}>
+                        <ul className="navbar-nav ms-auto">
                             <>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/login" onClick={() => setNavbarExpanded(false)}>Login</Link>
@@ -69,29 +69,30 @@ const Navbar: React.FC = () => {
                                     <Link className="nav-link" to="/signup" onClick={() => setNavbarExpanded(false)}>Signup</Link>
                                 </li>
                             </>
-                        )}
-                    </ul>
-                    {isAuthenticated && (
-                        <div className="d-flex align-items-center">
-                            <Dropdown drop="down">
-                                <Dropdown.Toggle variant="outline-light" id="user-dropdown" className='m-2'>
-                                    <FontAwesomeIcon icon={faUser} />
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu
-                                    style={{
-                                        position: 'absolute',
-                                        right: 0,
-                                        left: 'auto',
-                                        minWidth: '10rem', // Adjust as needed
-                                    }}
-                                >
-                                    <Dropdown.Item disabled={true}>Welcome, {userFirstName}</Dropdown.Item>
-                                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
-                    )}
-                </div>
+                        </ul>
+                    </div>
+                </> : null}
+
+                {isAuthenticated && (
+                    <div className="d-flex align-items-center">
+                        <Dropdown drop="down">
+                            <Dropdown.Toggle variant="outline-light" id="user-dropdown" className='m-2'>
+                                <FontAwesomeIcon icon={faUser} />
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu
+                                style={{
+                                    position: 'absolute',
+                                    right: 0,
+                                    left: 'auto',
+                                    minWidth: '10rem', // Adjust as needed
+                                }}
+                            >
+                                <Dropdown.Item disabled={true}>Welcome, {userFirstName}</Dropdown.Item>
+                                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                )}
             </div>
         </nav>
     );
