@@ -66,19 +66,21 @@ const LoginForm: React.FC = () => {
     return (
         <>
             {isLoading ? <CustomSpinner /> :
-                <div className="custom-container">
-                    <h2>Login</h2>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="Email" required disabled={isLoading} />
-                        </div>
-                        <div className="mb-3">
-                            <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" required disabled={isLoading} />
-                        </div>
-                        <button type="submit" className="btn btn-primary" disabled={isLoading}>
-                            {isLoading ? 'Loading...' : 'Login'}
-                        </button>
-                    </form>
+                <div className='custom-container-wrapper'>
+                    <div className="custom-container">
+                        <h2>Login</h2>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="Email" required disabled={isLoading} />
+                            </div>
+                            <div className="mb-3">
+                                <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" required disabled={isLoading} />
+                            </div>
+                            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                                {isLoading ? 'Loading...' : 'Login'}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             }
         </>

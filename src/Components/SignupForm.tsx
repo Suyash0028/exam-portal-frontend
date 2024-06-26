@@ -70,27 +70,29 @@ const SignupForm: React.FC = () => {
     return (
         <>
             {isLoading ? <CustomSpinner /> :
-                <div className="custom-container">
-                    <h2>Signup</h2>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} className="form-control" placeholder="Full Name" required />
-                        </div>
-                        <div className="mb-3">
-                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="Email" required />
-                        </div>
-                        <div className="mb-3">
-                            <input type="tel" name="contactNumber" value={formData.contactNumber} onChange={handleChange} className="form-control" placeholder="Contact Number" required />
-                        </div>
-                        <div className="mb-3">
-                            <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" required />
-                        </div>
-                        <div className="mb-3">
-                            <input type="date" name="examDate" value={formData.examDate} onChange={handleChange} className="form-control" placeholder="Exam Date" min={today} required />
-                        </div>
-                        <input type="hidden" name="isApproved" value="false" />
-                        <button type="submit" className="btn btn-primary">Signup</button>
-                    </form>
+                <div className='custom-container-wrapper'>
+                    <div className="custom-container">
+                        <h2>Signup</h2>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} className="form-control" placeholder="Full Name" required />
+                            </div>
+                            <div className="mb-3">
+                                <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="Email" required />
+                            </div>
+                            <div className="mb-3">
+                                <input type="tel" name="contactNumber" value={formData.contactNumber} onChange={handleChange} className="form-control" placeholder="Contact Number" required />
+                            </div>
+                            <div className="mb-3">
+                                <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" required />
+                            </div>
+                            <div className="mb-3">
+                                <input type="date" name="examDate" value={formData.examDate} onChange={handleChange} className="form-control" placeholder="Exam Date" min={today} required />
+                            </div>
+                            <input type="hidden" name="isApproved" value="false" />
+                            <button type="submit" className="btn btn-primary">Signup</button>
+                        </form>
+                    </div>
                 </div>
             }
         </>

@@ -17,6 +17,7 @@ body {
   background-color: #ffffff; /* Ensure the body background is white */
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 a {
@@ -53,12 +54,18 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 5px;
-  width: 400px;
-  margin: auto;
+  min-width: 350px;
+  /* margin: auto;
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 20px; */
+}
+.custom-container-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
 }
 
 h2 {
@@ -123,7 +130,7 @@ input {
 /* Media Query for Responsive Design */
 @media screen and (max-width: 600px) {
   .custom-container {
-    margin-top: 200px; /* Adjust margin-top for smaller screens */
+    
     padding: 15px; /* Reduce padding */
     width: auto; /* Adjust width for smaller screens */
   }
