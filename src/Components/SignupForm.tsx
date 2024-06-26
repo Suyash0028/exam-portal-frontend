@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import CustomSpinner from './Spinner';
+import { useHistory } from 'react-router';
 
 interface SignupFormData {
     fullName: string;
@@ -21,6 +22,7 @@ const SignupForm: React.FC = () => {
         examDate: '',
         isApproved: false
     });
+    const history = useHistory();
     const [isLoading, setLoading] = useState(false); // Loading state
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -49,6 +51,7 @@ const SignupForm: React.FC = () => {
                 examDate: '',
                 isApproved: false
             });
+            history.push('/login');
         } catch (error: any) {
             console.error('Signup error:', error);
             setLoading(false); // Set loading to true while submitting
@@ -61,7 +64,6 @@ const SignupForm: React.FC = () => {
                 draggable: true,
                 progress: undefined,
             });
-
         }
     };
     const today = new Date().toISOString().split('T')[0];
