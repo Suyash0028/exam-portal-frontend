@@ -76,8 +76,8 @@ const Navbar: React.FC = () => {
                         </div>
                     </>
                     : null}
-                <div>
-                    {isAuthenticated ? (
+                {isAuthenticated ? (
+                    <div>
                         <Dropdown drop="down">
                             <Dropdown.Toggle variant="outline-light" id="user-dropdown" className='m-2'>
                                 {/* Placeholder icon, replace with your user persona icon */}
@@ -96,8 +96,8 @@ const Navbar: React.FC = () => {
                                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                    ) : null}
-                </div>
+                    </div>
+                ) : null}
             </div>
         </nav>
     );
