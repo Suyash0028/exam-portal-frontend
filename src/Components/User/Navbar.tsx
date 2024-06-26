@@ -58,21 +58,26 @@ const Navbar: React.FC = () => {
                     <img src={logo} alt="Logo" style={{ height: '30px', marginRight: '10px' }} />
                     Exam Portal
                 </Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                            {!isAuthenticated ? (<Link className="nav-link" to="/login">Login</Link>) : null}
-                        </li>
-                        <li className="nav-item">
-                            {!isAuthenticated ? (<Link className="nav-link" to="/signup">Signup</Link>) : null}
-                        </li>
-                    </ul>
+                {!isAuthenticated ?
+                    <>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div className="collapse navbar-collapse" id="navbarNav">
+                            <ul className="navbar-nav ms-auto">
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login">Login</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/signup">Signup</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </>
+                    : null}
+                <div>
                     {isAuthenticated ? (
-
-
                         <Dropdown drop="down">
                             <Dropdown.Toggle variant="outline-light" id="user-dropdown" className='m-2'>
                                 {/* Placeholder icon, replace with your user persona icon */}
