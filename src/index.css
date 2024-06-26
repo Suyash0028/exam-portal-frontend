@@ -123,7 +123,7 @@ input {
 /* Media Query for Responsive Design */
 @media screen and (max-width: 600px) {
   .custom-container {
-    margin-top: 50px; /* Adjust margin-top for smaller screens */
+    margin-top: 200px; /* Adjust margin-top for smaller screens */
     padding: 15px; /* Reduce padding */
     width: auto; /* Adjust width for smaller screens */
   }
